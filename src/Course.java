@@ -47,6 +47,6 @@ public class Course {
                 "\n Descripción: " + descriptionC +
                 "\n Horario: " + schedule +
                 "\n Estudiantes asignados: " + (student != null ? student.getName() + " " + student.getLastName() :"Aún sin estudiantes asignados"+
-                "\n Profesor Asignado: "+ professor);//if para validar student null
+                "\n Profesor asignado: " + (professor != null ? professor.getName() + " " + professor.getLastName() :"Aún sin profesores asignados"));
     }
 }

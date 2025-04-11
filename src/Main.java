@@ -154,9 +154,9 @@ public class Main {
             try {
                 System.out.println( "\u001B[34m\nSistema Universidad ABC - Buscar\u001B[0m" );
                 System.out.println( "\u001B[32mMenú de Búsqueda:" );
-                System.out.println( "1. Buscar Estudiante Nombre" );
-                System.out.println( "2. Buscar Estudiante ID" );
-                System.out.println( "3. Mostrar fila actual" );
+                System.out.println( "1. Buscar Estudiante por Nombre" );
+                System.out.println( "2. Buscar Estudiante por ID" );
+                System.out.println( "3. Buscar Profesor" );
                 System.out.println( "0. Volver al menú principal\u001B[0m" );
                 System.out.print( "Seleccione una opción: " );
                 opcionBusqueda = scanner.nextInt();
@@ -171,7 +171,7 @@ public class Main {
                         buscarPorId(studentList);
                         break;
                     case 3:
-                        //mostrarFila();
+                        buscarPorNombreProfesor(professorList);
                         break;
                     case 0:
                         System.out.println( "\u001B[32mVolviendo al menú principal...\u001B[0m" );
@@ -436,7 +436,7 @@ public class Main {
                 }
                 currentStudent = currentStudent.next;
             }
-            System.out.println("Estudiante no encontrado con el nombre: " + nombre);
+            System.out.println("Estudiante no encontrado con el nombre de: " + nombre);
 
         } catch (Exception e) {
             System.out.println( "\u001B[31mError al listar: " + e.getMessage() + "\u001B[0m" );
@@ -463,6 +463,35 @@ public class Main {
             System.out.println( "\u001B[31mError al listar: " + e.getMessage() + "\u001B[0m" );
         }
 }
+
+    public static void buscarPorNombreProfesor(GenericLinkedList<Professor> professorList) {
+        try {
+            // Pedir nombre estudiante
+            System.out.println("Ingrese el nombre del Profesor:");
+            String nombre = scanner.nextLine();
+            Node<Professor> currentProfessor = professorList.head;
+            while (currentProfessor != null) {
+                // Acceder a la data dentro del nodo
+                if (currentProfessor.data.getName().equals(nombre)) {
+
+                    //se agrega curso y nombre cuando encuentra el nombre al print
+                    System.out.println("Profesor encontrado: " + currentProfessor.data.getName());
+
+                    // Mostrar solo el código y el nombre de los cursos
+                    System.out.println("Lista de cursos:");
+                    for (Course course : currentProfessor.data.getCourses()) {
+                        System.out.println("Código: " + course.getIdCourse() + ", Nombre: " + course.getNameCourse());
+                    }
+                    return;
+                }
+                currentProfessor = currentProfessor.next;
+            }
+            System.out.println("Profesor no encontrado con el nombre de: " + nombre);
+
+        } catch (Exception e) {
+            System.out.println( "\u001B[31mError al listar: " + e.getMessage() + "\u001B[0m" );
+        }
+    }
 
     //método de Gestion Fila de Cajas
 

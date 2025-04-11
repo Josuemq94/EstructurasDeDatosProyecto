@@ -1,3 +1,4 @@
+//https://stackoverflow.com/questions/41845548/implementing-a-generic-type-java-linkedlist
 public class GenericLinkedList<T> {
     Node<T> head;
 
